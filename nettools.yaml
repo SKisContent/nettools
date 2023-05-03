@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nettools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nettools
+  template:
+    metadata:
+      labels:
+        app: nettools
+    spec:
+      containers:
+      - name: nettools
+        image: nettools:2023-05-03.001
+        imagePullPolicy: IfNotPresent
+        resources: {}
+        securityContext:
+          capabilities:
+            add: ["NET_ADMIN", "SYS_TIME"]
